@@ -16,10 +16,10 @@ void	*ft_calloc(size_t number, size_t size)
 {
 	unsigned char	*s;
 
-	s = (unsigned char *)malloc(number * sizeof(size));
+	s = (unsigned char *)malloc(number * size);
 	if (s != NULL)
 	{
-		ft_bzero(s, number);
+		ft_bzero(s, number * size);
 		return ((void *)(s));
 	}
 	else
