@@ -10,21 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-static size_t	ft_counter(char const *s, char c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*rtn;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	if ((size_t)start > strlen(s))
+		return (strdup(""));
+	rtn = malloc(sizeof(char) * (len + 1));
+	i = 0;
+	if (!rtn)
+		return (0);
+	while (i < len)
+	{
+		rtn[i] = *(s + start + i);
+		i++;
+	}
+	rtn[i] = '\0';
+	return (rtn);
+}
+
+static size_t	ft_counter(const char *s, char c)
 {
 	size_t	count;
 
 	count = 0;
 	while (*s)
 	{
-		if (*s == c && *++s != c && *s != 0)
+		while (*s == c)
+			s++;
+		if (*s != 0 && *s != c)
 			count++;
-		if (*s == 0)
-			return (count);
-		s = (const char *)(ft_strchr(s, c));
+		while (*s != c && *s != 0)
+			s++;
 	}
 	return (count);
 }
@@ -35,7 +59,7 @@ static size_t	ft_len_not_c(char const *s, char c)
 	const char	*src;
 
 	count = 0;
-	src = ft_strdup(s);
+	src = strdup(s);
 	while (*s != c && *s != 0)
 	{
 		count++;
@@ -66,21 +90,21 @@ char	**ft_split(char const *s, char c)
 	{
 		while (*s == c)
 			s++;
-		if (!*s)
+		if (*s != 0 && *s != c)
 		{
-			ret[i] = NULL;
-			return (ret);
+			ret[i] = ft_substr(s, 0, ft_len_not_c(s, c));
+			s++;
 		}
-		ret[i] = ft_substr(s, 0, ft_len_not_c(s, c));
+		while (*s != c && *s != 0)
+			s++;
 		if (ret[i] == NULL)
 		{
 			ft_ret_free(ret, i);
 			return (NULL);
 		}
-		s = ft_strchr(s, c);
 		i++;
 	}
-	ret[i] = NULL;
+	ret[i] = 0;
 	return (ret);
 }
 
@@ -90,7 +114,7 @@ int	main(void)
 	char	c;
 	char	**gm;
 
-	p = "44Hello44World44Rock44444";
+	p = "44Hello44World44Rock44444vin";
 	c = '4';
 	gm = ft_split(p, c);
 	if (gm == NULL)
@@ -98,6 +122,11 @@ int	main(void)
 		printf("NULL\n");
 		return (1);
 	}
-	printf("%s\n", gm[4]);
+	while (**gm)
+	{
+	    printf("%s\n", *gm);
+	    gm++;
+	}
+	
 	return (0);
 }
