@@ -21,16 +21,14 @@ int	ft_atoi(const char *str)
 	i = 0;
 	s = 1;
 	res = 0;
-	while (str[i] != '\0' && (str[i] == 32
-			|| str[i] == ' ' || str[i] == '\t'
-			|| str[i] == '\n' || str[i] == '\r' 
+	while (str[i] != '\0' && (str[i] == 32 || str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\n' || str[i] == '\r'
 			|| str[i] == '\v' || str[i] == '\f'))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == '-')
+		if (str[i++] == '-')
 			s = -1;
-		i++;
 	}
 	while (ft_isdigit(str[i]))
 	{
@@ -42,4 +40,3 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)(res * s));
 }
-
