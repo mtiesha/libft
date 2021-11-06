@@ -10,31 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*rtn;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	if ((size_t)start > strlen(s))
-		return (strdup(""));
-	rtn = malloc(sizeof(char) * (len + 1));
-	i = 0;
-	if (!rtn)
-		return (0);
-	while (i < len)
-	{
-		rtn[i] = *(s + start + i);
-		i++;
-	}
-	rtn[i] = '\0';
-	return (rtn);
-}
+#include "libft.h"
 
 static size_t	ft_counter(const char *s, char c)
 {
@@ -59,7 +35,7 @@ static size_t	ft_len_not_c(char const *s, char c)
 	const char	*src;
 
 	count = 0;
-	src = strdup(s);
+	src = ft_strdup(s);
 	while (*s != c && *s != 0)
 	{
 		count++;
@@ -106,27 +82,4 @@ char	**ft_split(char const *s, char c)
 	}
 	ret[i] = 0;
 	return (ret);
-}
-
-int	main(void)
-{
-	char	*p;
-	char	c;
-	char	**gm;
-
-	p = "44Hello44World44Rock44444vin";
-	c = '4';
-	gm = ft_split(p, c);
-	if (gm == NULL)
-	{
-		printf("NULL\n");
-		return (1);
-	}
-	while (**gm)
-	{
-	    printf("%s\n", *gm);
-	    gm++;
-	}
-	
-	return (0);
 }
