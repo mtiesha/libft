@@ -14,18 +14,29 @@
 
 char	*ft_strjoin(char const *str1, char const *str2)
 {
-	char	*str_cat;
-	size_t	cat_len;
+	size_t			str1_len;
+	size_t			str2_len;
+	size_t			str1str2_len;
+	unsigned char	*ret;
 
-	cat_len = ft_strlen(str1) + ft_strlen(str2) + 1;
-	str_cat = (char *)malloc(cat_len * sizeof(*str1));
-	if (str_cat != NULL)
+	if (!str1 && !str2)
+		return (ft_strdup(""));
+	if (!str1)
+		return (ft_strdup(str2));
+	if (!str2)
+		return (ft_strdup(str1));
+	str1_len = ft_strlen(str1);
+	str2_len = ft_strlen(str2);
+	str1str2_len = str1_len + str2_len;
+	ret = malloc((str1str2_len + 1) * sizeof(char));
+	if (ret != NULL)
 	{
-		ft_strlcat(str_cat, str1, cat_len);
-		ft_strlcat(str_cat, str2, cat_len);
-		return (str_cat);
+		ft_memcpy(ret, str1, str1_len);
+		ft_memcpy(ret + str1_len, str2, str2_len);
+		ret[str1str2_len] = 0;
+		return ((char *)(ret));
 	}
 	else
-		free(str_cat);
+		free(ret);
 	return (NULL);
 }
