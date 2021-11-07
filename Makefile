@@ -25,7 +25,7 @@ SRCS = 	ft_atoi.c		ft_bzero.c		ft_calloc.c \
 		ft_strtrim.c	ft_substr.c		ft_tolower.c \
 		ft_toupper.c
 
-SRCS_B = ft_lstnew_bonus.c	ft_lstadd_front	
+SRCS_B = ft_lstnew_bonus.c	ft_lstadd_front_bonus.c
 
 RM = rm -f
 
@@ -54,7 +54,7 @@ ${OBJ_B} : ${SRCS_B} Makefile libft.h
 	${CC} ${CFLAGS} ${SRCS_B} -c
 
 clean :
-	${RM} ${OBJ}
+	${RM} ${OBJ} ${OBJ_B}
 
 fclean : clean
 	${RM} ${NAME}
