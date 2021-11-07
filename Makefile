@@ -25,7 +25,8 @@ SRCS = 	ft_atoi.c		ft_bzero.c		ft_calloc.c \
 		ft_strtrim.c	ft_substr.c		ft_tolower.c \
 		ft_toupper.c
 
-SRCS_B = ft_lstnew_bonus.c	ft_lstadd_front_bonus.c
+SRCS_B = ft_lstnew_bonus.c	ft_lstadd_front_bonus.c \
+		ft_lstsize_bonus.c
 
 RM = rm -f
 
