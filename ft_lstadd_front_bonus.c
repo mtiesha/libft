@@ -14,12 +14,9 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_list			*p;
-	unsigned int	i;
-
-	p = lst;
-	while (p -> next != NULL)
+	if (new != NULL)
 	{
-		
+ 		new->next = *lst;
+ 		*lst = new;
 	}
 }
