@@ -12,89 +12,43 @@
 
 #include "libft.h"
 
-static char	*ft_strrev(char *s)
+static char	*ft_mincheck(char *str)
 {
-	char	tmp;
-	int		i;
-	int		j;
+	char	*ret;
 
-	i = 0;
-	j = ft_strlen(s);
-	while (j > i)
+	free(str);
+	ret = (char *)malloc(12 * sizeof(char));
+	if (ret != NULL)
 	{
-		j--;
-		tmp = s[i];
-		s[i] = s[j];
-		s[j] = tmp;
-		i++;
+		ft_memcpy(ret, "-2147483648", 11);
+		ret[12] = 0;
 	}
-	return (s);
-}
-
-static unsigned long	ft_size(int n)
-{
-	unsigned long	count;
-
-	count = 0;
-	while (n > 0)
-	{
-		count++;
-		n = n / 10;
-	}
-	return (count);
-}
-
-static char	*ft_alloc(int n)
-{
-	char	*str;
-
-	if (n == 0)
-	{
-		str = (char *)(ft_calloc(2, sizeof(char)));
-		str[0] = '0';
-		return (str);
-	}
-	if (n < 0)
-		str = (char *)malloc((ft_size(n) + 2) * sizeof(char *));
 	else
-		str = (char *)malloc((ft_size(n) + 1) * sizeof(char *));
-	if (str == NULL)
-	{
-		free(str);
-		return (NULL);
-	}
-	return (str);
-}
-
-static char	*ft_min_int(char *str)
-{
-	if (str == NULL)
-		return (NULL);
-	return ("-2147483648");
+		free(ret);
+	return (ret);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		i;
-	int		flag;
 
-	i = 0;
-	flag = 0;
-	str = ft_alloc(n);
-	if (str == NULL || n == -2147483648)
-		return (ft_min_int(str));
+	str = (char *)malloc(2 * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	if (n == -2147483648)
+		return (ft_mincheck(str));
 	if (n < 0)
 	{
-		n = n * -1;
-		flag++;
+		str[0] = '-';
+		str[1] = '\0';
+		str = ft_strjoin(str, ft_itoa(-n));
 	}
-	while (n)
+	else if (n >= 10)
+		str = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
+	else if (n >= 0 && n < 10)
 	{
-		str[i++] = (n % 10) + '0';
-		n = n / 10;
+		str[0] = n + '0';
+		str[1] = '\0';
 	}
-	if (flag)
-		str[i] = '-';
-	return (ft_strrev(str));
+	return (str);
 }
