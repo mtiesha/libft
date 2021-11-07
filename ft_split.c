@@ -82,6 +82,8 @@ char	**ft_split(char const *s, char c)
 	char	**ret;
 	size_t	count;
 
+	if (!s)
+		return (NULL);
 	count = ft_counter(s, c);
 	ret = (char **)malloc((count + 1) * sizeof(char *));
 	if (ret == NULL)
@@ -89,8 +91,6 @@ char	**ft_split(char const *s, char c)
 		free(ret);
 		return (NULL);
 	}
-	if (!s)
-		*ret = 0;
 	if (*s)
 		ret = ft_array_write(s, c, ret);
 	return (ret);
