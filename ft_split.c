@@ -46,8 +46,8 @@ static size_t	ft_len_not_c(char const *s, char c)
 
 static void	ft_ret_free(char **ret, size_t i)
 {
-	while (i-- >= 0)
-		free(ret[i]);
+	while (i >= 0)
+		free(ret[i--]);
 	free(ret);
 }
 
@@ -85,12 +85,9 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	count = ft_counter(s, c);
-	ret = (char **)malloc((count + 1) * sizeof(char *));
+	ret = (char **)calloc(count + 1, sizeof(char *));
 	if (ret == NULL)
-	{
-		free(ret);
 		return (NULL);
-	}
 	if (*s)
 		ret = ft_array_write(s, c, ret);
 	return (ret);
