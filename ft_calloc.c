@@ -22,7 +22,5 @@ void	*ft_calloc(size_t number, size_t size)
 		ft_bzero(s, number * size);
 		return ((void *)(s));
 	}
-	else
-		free(s);
 	return (NULL);
 }
