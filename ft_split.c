@@ -44,13 +44,6 @@ static size_t	ft_len_not_c(char const *s, char c)
 	return (count);
 }
 
-static void	ft_ret_free(char **ret, size_t i)
-{
-	while (i >= 0)
-		free(ret[i--]);
-	free(ret);
-}
-
 static char	**ft_array_write(const char *str, char c, char **ret)
 {
 	size_t	i;
@@ -64,10 +57,7 @@ static char	**ft_array_write(const char *str, char c, char **ret)
 		{
 			ret[i] = ft_substr(str, 0, ft_len_not_c(str, c));
 			if (ret[i] == NULL)
-			{
-				ft_ret_free(ret, i);
 				return (NULL);
-			}
 			i++;
 		}
 		while (*str != c && *str != 0)
@@ -85,7 +75,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	count = ft_counter(s, c);
-	ret = (char **)calloc(count + 1, sizeof(char *));
+	ret = (char **)ft_calloc(count + 1, sizeof(char *));
 	if (ret == NULL)
 		return (NULL);
 	if (*s)
