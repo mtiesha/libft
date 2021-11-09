@@ -29,7 +29,5 @@ char	*ft_substr(char const *str, unsigned int start, size_t len)
 		substr[len] = 0;
 		return ((char *)(substr));
 	}
-	else
-		free(substr);
 	return (NULL);
 }
