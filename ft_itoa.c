@@ -12,43 +12,71 @@
 
 #include "libft.h"
 
-static char	*ft_mincheck(char *str)
+static char	*ft_revstr(char *str)
 {
-	char	*ret;
+	char			temp;
+	unsigned long	i;
+	unsigned long	end;
 
-	free(str);
-	ret = (char *)malloc(12 * sizeof(char));
-	if (ret != NULL)
+	i = 0;
+	end = ft_strlen(str) - 1;
+	while (i < end)
 	{
-		ft_memcpy(ret, "-2147483648", 11);
-		ret[12] = 0;
+		temp = str[i];
+		str[i] = str[end];
+		str[end] = temp;
+		i++;
+		end--;
 	}
-	else
-		free(ret);
-	return (ret);
+	return (str);
+}
+
+static size_t	ft_count_dig(int n)
+{
+	size_t	count;
+
+	count = 1;
+	while (n / 10)
+	{
+		count++;
+		n = n / 10;
+	}
+	return (count);
+}
+
+static char	*ft_array_write(int nbr, char *s, size_t sign)
+{
+	long	cn;
+	size_t	i;
+
+	cn = nbr;
+	i = 0;
+	if (sign)
+		cn = cn * -1;
+	ft_memset(s, '0', ft_strlen(s) + sign);
+	while (cn)
+	{
+		s[i++] = (cn % 10) + '0';
+		cn = cn / 10;
+	}
+	if (sign)
+		s[i] = '-';
+	return (s);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*str;
+	size_t	nlen;
+	size_t	flag;
 
-	str = (char *)malloc(2 * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	if (n == -2147483648)
-		return (ft_mincheck(str));
+	flag = 0;
 	if (n < 0)
-	{
-		str[0] = '-';
-		str[1] = '\0';
-		str = ft_strjoin(str, ft_itoa(-n));
-	}
-	else if (n >= 10)
-		str = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
-	else if (n >= 0 && n < 10)
-	{
-		str[0] = n + '0';
-		str[1] = '\0';
-	}
-	return (str);
+		flag = 1;
+	nlen = ft_count_dig(n);
+	str = ft_calloc(nlen + flag + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	str = ft_array_write(n, str, flag);
+	return (ft_revstr(str));
 }
