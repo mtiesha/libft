@@ -21,7 +21,6 @@ static int	ft_cont_zero(const char *dest, size_t size)
 		size--;
 	}
 	return (0);
-		
 }
 
 size_t		ft_strlcat(char *dest, const char *src, size_t destsize)
