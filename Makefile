@@ -46,13 +46,13 @@ ${NAME} : ${OBJ} Makefile libft.h
 	${LIB} ${NAME} ${OBJ}
 
 ${OBJ} : ${SRCS} Makefile libft.h
-	${CC} ${CFLAGS} ${SRCS} -c
+	${CC} ${CFLAGS} ${SRCS} -c -I.
 
 bonus : ${OBJ_B} Makefile libft.h
 	${LIB} ${NAME} ${OBJ_B}
 
 ${OBJ_B} : ${SRCS_B} Makefile libft.h
-	${CC} ${CFLAGS} ${SRCS_B} -c
+	${CC} ${CFLAGS} ${SRCS_B} -c -I.
 
 clean :
 	${RM} ${OBJ} ${OBJ_B}
