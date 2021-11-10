@@ -77,6 +77,18 @@ char	*ft_itoa(int n)
 	str = ft_calloc(nlen + flag + 1, sizeof(char));
 	if (!str)
 		return (NULL);
+	if (nlen == 1 && flag == 0)
+	{
+		str[0] = n + '0';
+		return (str);
+	}
+	if (nlen == 1 && flag == 1)
+	{
+		str[0] = '-';
+		n = n * -1;
+		str[1] = n + '0';
+		return (str);
+	}
 	str = ft_array_write(n, str, flag);
 	return (ft_revstr(str));
 }
