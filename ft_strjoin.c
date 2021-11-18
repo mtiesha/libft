@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtiesha <mtiesha@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 15:57:07 by mtiesha           #+#    #+#             */
-/*   Updated: 2021/10/26 19:16:32 by mtiesha          ###   ########.fr       */
+/*   Created: 2021/11/10 12:54:23 by mtiesha           #+#    #+#             */
+/*   Updated: 2021/11/10 13:39:26 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,5 @@ char	*ft_strjoin(char const *str1, char const *str2)
 		ret[str1str2_len] = 0;
 		return ((char *)(ret));
 	}
-	else
-		free(ret);
 	return (NULL);
 }

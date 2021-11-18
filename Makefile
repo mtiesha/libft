@@ -5,8 +5,8 @@
 #                                                    +:+ +:+         +:+     #
 #   By: mtiesha <mtiesha@student.21-school.ru>     +#+  +:+       +#+        #
 #                                                +#+#+#+#+#+   +#+           #
-#   Created: 2021/10/26 17:42:35 by mtiesha           #+#    #+#             #
-#   Updated: 2021/10/26 19:16:30 by mtiesha          ###   ########.fr       #
+#   Created: 2021/11/10 12:54:23 by mtiesha           #+#    #+#             #
+#   Updated: 2021/11/10 13:39:24 by mtiesha          ###   ########.fr       #
 #                                                                            #
 # ************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS = 	ft_atoi.c		ft_bzero.c		ft_calloc.c \
 		ft_toupper.c
 
 SRCS_B = ft_lstnew_bonus.c	ft_lstadd_front_bonus.c \
-		ft_lstsize_bonus.c
+		ft_lstsize_bonus.c	ft_lstlast_bonus.c
 
 RM = rm -f
 
@@ -62,4 +62,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean fclean all re
+.PHONY : clean fclean all re bonus
